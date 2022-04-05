@@ -1,28 +1,34 @@
-import Utils from './services/Utils';
-
 import Home from './views/pages/Home';
 import Err from './views/pages/Err';
 
+import Utils from './services/Utils';
+
+
 let routes = {
-  '/':  Home
+  '/': Home
 }
 
 const router = async () => {
-  // referenciando o elemento HTML para renderização
-   const content = null || document.getElementById('app');
 
-  // Obtendo a URL do meu browser
-   let request = Utils.parseRequestURL();
 
-  // Analisar a URL e verificar se a rota é simples ou composta
-   let parsedURL = (request.resource ? '/' + request.resource: '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '');
+  const content = null || document.getElementById('app');
 
-   let page = routes[parsedURL] ? routes[parsedURL] : Err;
+  // Obtenha o URl do navegador
+  let request = Utils.parseRequestURL()
 
-   content.innerHTML = await page.render();
-   await page.after_render();
+  // Analise o URL e se ele tiver uma parte de id, altere-o com a string ": id"
+  let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
   
+  // Obtenha a página de nosso hash de rotas com suporte.
+  // Se o URL analisado não estiver em nossa lista de rotas compatíveis, selecione a página 404
+  let page = routes[parsedURL] ? routes[parsedURL] : Err
+  content.innerHTML = await page.render();
+  await page.after_render();
+
 }
 
-window.addEventListener('hashchange', router)
-window.addEventListener('load', router)
+// Observa a mudança de hash:
+window.addEventListener('hashchange', router);
+
+// Observa o carregamento da página:
+window.addEventListener('load', router);
