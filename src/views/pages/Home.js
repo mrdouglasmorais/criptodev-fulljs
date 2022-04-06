@@ -1,3 +1,4 @@
+import BitcoinLogo from '../../img/logos/Bitcoin-Logo.png'
 
 
 let Home = {
@@ -5,11 +6,20 @@ let Home = {
     let view = `
       <div>
         <h1>Home</h1>
+        <div>
+          <img src="${BitcoinLogo}" alt="Logo Bitcoin" class="logo"/>
+          <button id="testFunc">Clique aqui</button>
+        </div>
       </div>
     `
     return view
   },
-  after_render: async () => {}
+  after_render: async () => {
+    let buttonTest = document.getElementById('testFunc')
+    buttonTest.addEventListener('click', () => {
+      alert('Funcionou!!!')
+    })
+  }
 }
 
 export default Home;
