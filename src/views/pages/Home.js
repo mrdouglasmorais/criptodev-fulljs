@@ -9,6 +9,7 @@ let Home = {
         <div>
           <img src="${BitcoinLogo}" alt="Logo Bitcoin" class="logo"/>
           <button id="testFunc">Clique aqui</button>
+          <a href="/#/contato">Entrar em contato</a>
         </div>
       </div>
     `

@@ -1,11 +1,13 @@
 import Home from './views/pages/Home';
+import Contact from './views/pages/Contato';
 import Err from './views/pages/Err';
 
 import Utils from './services/Utils';
 
 
 let routes = {
-  '/': Home
+  '/': Home,
+  '/contato': Contact
 }
 
 const router = async () => {
