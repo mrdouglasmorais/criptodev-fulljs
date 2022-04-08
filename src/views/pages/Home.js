@@ -1,17 +1,22 @@
-import BitcoinLogo from '../../img/logos/Bitcoin-Logo.png'
+import BitcoinLogo from '../../img/logos/Bitcoin-Logo.png';
+import NavBar from '../components/Navbar';
+import FooterComponent from '../components/Footer';
 
 
 let Home = {
   render: async () => {
+    let Navigation = await NavBar.render()
     let view = `
-      <div>
-        <h1>Home</h1>
+      ${Navigation}
         <div>
-          <img src="${BitcoinLogo}" alt="Logo Bitcoin" class="logo"/>
-          <button id="testFunc">Clique aqui</button>
-          <a href="/#/contato">Entrar em contato</a>
+          <h1>Home</h1>
+          <div>
+            <img src="${BitcoinLogo}" alt="Logo Bitcoin" class="logo"/>
+            <button id="testFunc">Clique aqui</button>
+            <a href="/#/contato">Entrar em contato</a>
+          </div>
         </div>
-      </div>
+      ${FooterComponent}
     `
     return view
   },
